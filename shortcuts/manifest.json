@@ -1,0 +1,25 @@
+{
+  "shortcuts": [
+    {
+      "id": "ask-jarvis",
+      "name": "Ask JARVIS",
+      "file": "shortcuts/ask-jarvis.shortcut",
+      "source": "shortcuts/ask-jarvis.json",
+      "description": "Voice command to JARVIS via Siri"
+    },
+    {
+      "id": "send-to-jarvis",
+      "name": "Send to JARVIS",
+      "file": "shortcuts/send-to-jarvis.shortcut",
+      "source": "shortcuts/send-to-jarvis.json",
+      "description": "Send captured photo/media for analysis"
+    },
+    {
+      "id": "jarvis-status",
+      "name": "JARVIS Status",
+      "file": "shortcuts/jarvis-status.shortcut",
+      "source": "shortcuts/jarvis-status.json",
+      "description": "Quick status check / complication helper"
+    }
+  ]
+}
