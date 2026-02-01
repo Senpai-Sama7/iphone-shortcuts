@@ -1,0 +1,68 @@
+{
+  "WFWorkflowActions": [
+    {
+      "WFWorkflowActionIdentifier": "is.workflow.actions.dictatetext",
+      "WFWorkflowActionParameters": {
+        "WFSilenceConfirmation": true,
+        "WFStopListening": "After Pause"
+      }
+    },
+    {
+      "WFWorkflowActionIdentifier": "is.workflow.actions.geturl",
+      "WFWorkflowActionParameters": {
+        "WFURLActionBody": "{\"type\": \"voice_command\", \"text\": \"{{Dictated Text}}\", \"device\": \"{{Device}}\", \"timestamp\": \"{{CurrentDate}}\"}",
+        "WFURLActionHeaders": {
+          "Authorization": "Bearer YOUR_JARVIS_TOKEN",
+          "Content-Type": "application/json"
+        },
+        "WFURLActionMethod": "POST",
+        "WFURLActionURL": "http://YOUR_JARVIS_IP:18790/api/v1/webhook/rayban"
+      }
+    },
+    {
+      "WFWorkflowActionIdentifier": "is.workflow.actions.showresult",
+      "WFWorkflowActionParameters": {
+        "Text": {
+          "Value": {
+            "attachmentsByRange": {},
+            "string": "JARVIS: Processing your request..."
+          },
+          "WFSerializationType": "WFTextTokenString"
+        }
+      }
+    }
+  ],
+  "WFWorkflowClientRelease": "4.0",
+  "WFWorkflowClientVersion": "1092.0.2",
+  "WFWorkflowIcon": {
+    "WFWorkflowIconGlyphNumber": 61440,
+    "WFWorkflowIconStartColor": 4292093695
+  },
+  "WFWorkflowImportQuestions": [],
+  "WFWorkflowInputContentItemClasses": [
+    "WFAppStoreAppContentItem",
+    "WFArticleContentItem",
+    "WFContactContentItem",
+    "WFDateContentItem",
+    "WFEmailAddressContentItem",
+    "WFGenericFileContentItem",
+    "WFImageContentItem",
+    "WFiTunesProductContentItem",
+    "WFLocationContentItem",
+    "WFDCMapsLinkContentItem",
+    "WFAVAssetContentItem",
+    "WFPDFContentItem",
+    "WFPhoneNumberContentItem",
+    "WFRichTextContentItem",
+    "WFSafariWebPageContentItem",
+    "WFStringContentItem",
+    "WFURLContentItem"
+  ],
+  "WFWorkflowMinimumClientVersion": 900,
+  "WFWorkflowMinimumClientVersionString": "900",
+  "WFWorkflowName": "Ask JARVIS",
+  "WFWorkflowTypes": [
+    "NCWidget",
+    "WatchKit"
+  ]
+}
