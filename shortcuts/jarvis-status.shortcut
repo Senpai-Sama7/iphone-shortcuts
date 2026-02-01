@@ -1,0 +1,31 @@
+{
+  "WFWorkflowClientVersion": "1092.0.2",
+  "WFWorkflowClientRelease": "4.0",
+  "WFWorkflowMinimumClientVersion": 900,
+  "WFWorkflowMinimumClientVersionString": "900",
+  "WFWorkflowIcon": {
+    "WFWorkflowIconStartColor": 4278190335,
+    "WFWorkflowIconGlyphNumber": 61456
+  },
+  "WFWorkflowImportQuestions": [],
+  "WFWorkflowTypes": [
+    "WatchKit"
+  ],
+  "WFWorkflowActions": [
+    {
+      "WFWorkflowActionIdentifier": "is.workflow.actions.geturl",
+      "WFWorkflowActionParameters": {
+        "WFURLActionURL": "http://172.20.1.30:18790/api/v1/weather",
+        "WFURLActionMethod": "GET",
+        "WFURLActionHeaders": {
+          "Authorization": "Bearer ab25e2ddac40ff2ebb7f4594cf286b1fbda31c06f48ccc57"
+        }
+      }
+    },
+    {
+      "WFWorkflowActionIdentifier": "is.workflow.actions.showresult",
+      "WFWorkflowActionParameters": {}
+    }
+  ],
+  "WFWorkflowName": "JARVIS Status"
+}
