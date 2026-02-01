@@ -1,0 +1,45 @@
+{
+  "WFWorkflowActions": [
+    {
+      "WFWorkflowActionIdentifier": "is.workflow.actions.geturl",
+      "WFWorkflowActionParameters": {
+        "WFURLActionBody": "{\"type\": \"photo_captured\", \"image\": \"{{Shortcut Input}}\", \"source\": \"rayban\", \"timestamp\": \"{{CurrentDate}}\"}",
+        "WFURLActionHeaders": {
+          "Authorization": "Bearer YOUR_JARVIS_TOKEN",
+          "Content-Type": "application/json"
+        },
+        "WFURLActionMethod": "POST",
+        "WFURLActionURL": "http://YOUR_JARVIS_IP:18790/api/v1/webhook/rayban"
+      }
+    },
+    {
+      "WFWorkflowActionIdentifier": "is.workflow.actions.showresult",
+      "WFWorkflowActionParameters": {
+        "Text": {
+          "Value": {
+            "attachmentsByRange": {},
+            "string": "Photo sent to JARVIS for analysis"
+          },
+          "WFSerializationType": "WFTextTokenString"
+        }
+      }
+    }
+  ],
+  "WFWorkflowClientRelease": "4.0",
+  "WFWorkflowClientVersion": "1092.0.2",
+  "WFWorkflowIcon": {
+    "WFWorkflowIconGlyphNumber": 61465,
+    "WFWorkflowIconStartColor": 4282601983
+  },
+  "WFWorkflowImportQuestions": [],
+  "WFWorkflowInputContentItemClasses": [
+    "WFImageContentItem",
+    "WFMediaContentItem"
+  ],
+  "WFWorkflowMinimumClientVersion": 900,
+  "WFWorkflowMinimumClientVersionString": "900",
+  "WFWorkflowName": "Send to JARVIS",
+  "WFWorkflowTypes": [
+    "ActionExtension"
+  ]
+}
