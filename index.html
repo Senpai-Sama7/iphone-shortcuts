@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JARVIS Shortcuts Installer</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            color: #fff;
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        .header {
+            text-align: center;
+            padding: 40px 20px;
+        }
+        
+        .header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            background: linear-gradient(45deg, #00d4ff, #7b2cbf);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        .header p {
+            color: #888;
+            font-size: 1.1em;
+        }
+        
+        .config-box {
+            background: rgba(255,193,7,0.1);
+            border: 1px solid rgba(255,193,7,0.3);
+            border-radius: 15px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+        
+        .config-box h3 {
+            color: #ffc107;
+            margin-bottom: 15px;
+        }
+        
+        .config-box input {
+            width: 100%;
+            padding: 12px;
+            border-radius: 8px;
+            border: 1px solid rgba(255,255,255,0.2);
+            background: rgba(0,0,0,0.3);
+            color: #fff;
+            font-size: 16px;
+            margin-bottom: 10px;
+        }
+        
+        .config-box button {
+            width: 100%;
+            padding: 12px;
+            background: #007AFF;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+        }
+        
+        .shortcut-card {
+            background: rgba(255,255,255,0.05);
+            border-radius: 20px;
+            padding: 25px;
+            margin-bottom: 20px;
+            border: 1px solid rgba(255,255,255,0.1);
+            backdrop-filter: blur(10px);
+        }
+        
+        .shortcut-icon {
+            width: 60px;
+            height: 60px;
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 28px;
+            margin-bottom: 15px;
+        }
+        
+        .icon-voice { background: linear-gradient(135deg, #ff6b6b, #ee5a6f); }
+        .icon-photo { background: linear-gradient(135deg, #4ecdc4, #44a08d); }
+        .icon-watch { background: linear-gradient(135deg, #667eea, #764ba2); }
+        
+        .shortcut-title {
+            font-size: 1.4em;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+        
+        .shortcut-desc {
+            color: #aaa;
+            font-size: 0.95em;
+            line-height: 1.5;
+            margin-bottom: 20px;
+        }
+        
+        .install-btn {
+            display: block;
+            width: 100%;
+            padding: 16px 24px;
+            background: linear-gradient(135deg, #007AFF, #5856D6);
+            color: white;
+            text-decoration: none;
+            border-radius: 12px;
+            text-align: center;
+            font-weight: 600;
+            font-size: 1.1em;
+            border: none;
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        
+        .install-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(0,122,255,0.3);
+        }
+        
+        .install-btn.disabled {
+            background: #444;
+            cursor: not-allowed;
+        }
+        
+        .warning {
+            background: rgba(255,193,7,0.1);
+            border: 1px solid rgba(255,193,7,0.3);
+            border-radius: 10px;
+            padding: 15px;
+            margin: 20px 0;
+            color: #ffc107;
+        }
+        
+        .status {
+            background: rgba(0,255,0,0.1);
+            border: 1px solid rgba(0,255,0,0.3);
+            border-radius: 10px;
+            padding: 15px;
+            margin: 10px 0;
+            color: #00d26a;
+            display: none;
+        }
+        
+        .status.show { display: block; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🤖 JARVIS</h1>
+            <p>iOS Shortcuts Installer</p>
+        </div>
+        
+        <div class="warning">
+            ⚠️ Update your JARVIS IP address before installing
+        </div>
+        
+        <div class="config-box">
+            <h3>⚙️ Configuration</h3>
+            <p style="color: #aaa; margin-bottom: 10px; font-size: 0.9em;">
+                Find your 845 G8 IP: <code>hostname -I</code>
+            </p>
+            <input type="text" id="jarvis-ip" placeholder="Enter IP (e.g., 192.168.1.100)" value="172.20.1.30">
+            <button onclick="updateLinks()">Update Install Links</button>
+        </div>
+        
+        <div class="status" id="status-msg">
+            ✅ Links updated! You can now install shortcuts.
+        </div>
+        
+        <!-- Shortcut 1: Ask JARVIS -->
+        <div class="shortcut-card">
+            <div class="shortcut-icon icon-voice">🎤</div>
+            <div class="shortcut-title">Ask JARVIS</div>
+            <div class="shortcut-desc">
+                Voice control for Ray-Bans and Apple Watch. Say "Hey Siri, Ask JARVIS"
+            </div>
+            <a href="#" class="install-btn disabled" id="btn-ask" onclick="return installShortcut('ask')">
+                📲 Install Shortcut
+            </a>
+        </div>
+        
+        <!-- Shortcut 2: Send to JARVIS -->
+        <div class="shortcut-card">
+            <div class="shortcut-icon icon-photo">📸</div>
+            <div class="shortcut-title">Send to JARVIS</div>
+            <div class="shortcut-desc">
+                Send Ray-Ban photos to JARVIS for AI analysis
+            </div>
+            <a href="#" class="install-btn disabled" id="btn-send" onclick="return installShortcut('send')">
+                📲 Install Shortcut
+            </a>
+        </div>
+        
+        <!-- Shortcut 3: JARVIS Status -->
+        <div class="shortcut-card">
+            <div class="shortcut-icon icon-watch">⌚</div>
+            <div class="shortcut-title">JARVIS Status</div>
+            <div class="shortcut-desc">
+                Apple Watch complication for instant status
+            </div>
+            <a href="#" class="install-btn disabled" id="btn-status" onclick="return installShortcut('status')">
+                📲 Install Shortcut
+            </a>
+        </div>
+    </div>
+    
+    <script>
+        const JARVIS_TOKEN = 'ab25e2ddac40ff2ebb7f4594cf286b1fbda31c06f48ccc57';
+        let currentIP = '172.20.1.30';
+        
+        function updateLinks() {
+            const ipInput = document.getElementById('jarvis-ip');
+            currentIP = ipInput.value.trim();
+            
+            if (!currentIP) {
+                alert('Please enter your JARVIS IP address');
+                return;
+            }
+            
+            // Enable buttons
+            document.querySelectorAll('.install-btn').forEach(btn => {
+                btn.classList.remove('disabled');
+            });
+            
+            // Show status
+            document.getElementById('status-msg').classList.add('show');
+            
+            // Update button URLs
+            updateButton('btn-ask', 'ask-jarvis', {
+                type: 'voice_command',
+                text: '{{Dictated Text}}',
+                device: '{{Device}}'
+            });
+            
+            updateButton('btn-send', 'send-to-jarvis', {
+                type: 'photo_captured',
+                image: '{{Shortcut Input}}',
+                source: 'rayban'
+            });
+            
+            updateButton('btn-status', 'jarvis-status', null, true);
+        }
+        
+        function updateButton(id, name, body, isGet = false) {
+            const btn = document.getElementById(id);
+            const url = `http://${currentIP}:18790/api/v1/${name === 'jarvis-status' ? 'weather' : 'webhook/rayban'}`;
+            
+            // Create shortcut data
+            const shortcutData = {
+                WFWorkflowActionIdentifier: isGet ? 'is.workflow.actions.geturl' : 'is.workflow.actions.geturl',
+                WFWorkflowActionParameters: {
+                    WFURLActionURL: url,
+                    WFURLActionMethod: isGet ? 'GET' : 'POST',
+                    WFURLActionHeaders: {
+                        'Authorization': `Bearer ${JARVIS_TOKEN}`,
+                        'Content-Type': 'application/json'
+                    }
+                }
+            };
+            
+            if (body) {
+                shortcutData.WFWorkflowActionParameters.WFURLActionBody = JSON.stringify(body);
+            }
+            
+            // Encode for shortcuts app
+            const encoded = encodeURIComponent(JSON.stringify(shortcutData));
+            btn.href = `shortcuts://import-shortcut?url=data:application/json;base64,${btoa(JSON.stringify(shortcutData))}`;
+        }
+        
+        function installShortcut(type) {
+            if (!currentIP || currentIP === '172.20.1.30') {
+                alert('Please update the IP address first!\n\nRun: hostname -I\non your 845 G8 to find your IP.');
+                return false;
+            }
+            return true;
+        }
+        
+        // Auto-update on load if IP looks default
+        window.onload = function() {
+            const savedIP = localStorage.getItem('jarvis-ip');
+            if (savedIP) {
+                document.getElementById('jarvis-ip').value = savedIP;
+                currentIP = savedIP;
+                updateLinks();
+            }
+        };
+        
+        // Save IP when updated
+        document.getElementById('jarvis-ip').addEventListener('change', function() {
+            localStorage.setItem('jarvis-ip', this.value);
+        });
+    </script>
+</body>
+</html>
