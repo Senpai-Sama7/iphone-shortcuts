@@ -270,3 +270,5 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 ---
 
 Made with 🤖 for JARVIS • [Houston Oil Airs](https://houstonoilairs.org)
+
+Security note: this repo intentionally ships placeholder values. Never commit real tokens/IPs to GitHub.
