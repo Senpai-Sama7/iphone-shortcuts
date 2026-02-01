@@ -7,6 +7,19 @@
 
 ## 🚀 Quick Start
 
+## Install on iPhone (Direct)
+
+1. On your iPhone, open the installer page:
+   https://senpai-sama7.github.io/iphone-shortcuts
+2. Tap **Install Shortcut** for the shortcut(s) you want.
+3. If Safari downloads the file instead of opening Shortcuts: open the download → Share → **Open in Shortcuts** (or **Add Shortcut**).
+4. After installing, open each shortcut in the Shortcuts app and set your JARVIS server details if prompted by iOS.
+
+Notes:
+- Settings → Shortcuts → enable **Allow Untrusted Shortcuts** (iOS may require you to run any shortcut once before this toggle appears).
+- This repo does not ship real tokens or IPs. Replace placeholders with your own values.
+
+
 ### Live Installation
 
 **Your installer is already live at:**
@@ -54,7 +67,7 @@ Or check your router's DHCP leases for the device.
 2. Open Shortcuts app on iPhone
 3. Find each JARVIS shortcut
 4. Edit the "Get URL" action
-5. Update IP address from `172.20.1.30` to your server IP
+5. Update IP address from `YOUR_JARVIS_IP` to your server IP
 
 ### Security Token
 
